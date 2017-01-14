@@ -1,32 +1,32 @@
 version: '2'
 services:
-  web:
+  tomcat:
    image: "drosenbauer/rpi3-tomcat8-jdk8"
 
   nginx:
    build:
      context: ./nginx
    image: "test/nginx"
-   volumes:
-    - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-   links:
-     - "web:tomcat1"
    depends_on:
-    - web
+     - tomcat
+   links:
+     - tomcat
+   volumes:
+     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
 
   lb:
    build:
      context: ./haproxy
    image: "test/haproxy"
    ports:
-    - "1234:1234"
-    - "80:80"
-    - "443:443"
+     - "80:80"
+     - "443:443"
+     - "1234:1234"
    depends_on:
     - nginx
-   volumes:
-    - ./haproxy/haproxy.cfg:/tmp/conf_override/haproxy.cfg:ro
-    - ./certs/pi.jmob.net.pem:/etc/haproxy/certs/pi.jmob.net.pem:ro
-
    links:
-     - "nginx:nginx1"
+     - nginx
+   volumes:
+     - ./haproxy/haproxy.cfg:/tmp/conf_override/haproxy.cfg:ro
+     - ./certs/pi.jmob.net.pem:/etc/haproxy/certs/pi.jmob.net.pem:ro
+
