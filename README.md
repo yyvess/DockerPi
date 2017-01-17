@@ -1,12 +1,11 @@
-Sample docker compose on Raspberry PI 3 
+Docker compose HaProxy, Nginx and Tomcat with HTTP/2 support 
 
-Docker PI
+ARM Docker images for PI 3
 ======
 
-Tomcat on my PI with HTTP2 support
+Sample dockerized Tomcat for ARM with HTTP/2 loadbalancer
 
-Demo https://pi.jmob.net
-
+Demo : https://pi.jmob.net
 
 Based on Hypriot images
 
@@ -17,3 +16,7 @@ Docker-compose install
  * sudo pip install docker-compose
 
 *Certificat must be put on the directory ./certs 
+
+TODO:
+ * Dynamic load balancer configuration
+ * Let’s Encrypt certificat auto update
