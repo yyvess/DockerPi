@@ -1,4 +1,4 @@
-FROM hypriot/rpi-alpine
+FROM hypriot/rpi-alpine:3.4
 
 MAINTAINER Drakaka <DrakeriNproduction@gmail.com>
 
